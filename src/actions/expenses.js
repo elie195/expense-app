@@ -1,4 +1,3 @@
-import uuid from 'uuid';
 import database from '../firebase/firebase';
 
 export const addExpense = expense => ({
@@ -51,5 +50,16 @@ export const startSetExpenses = () => {
     });
     dispatch(setExpenses(expenses));
     return snapshot;
+  };
+};
+
+export const startRemoveExpense = ({ id } = {}) => {
+  return async dispatch => {
+    if (!id) {
+      return;
+    }
+    const res = await database.ref(`expenses/${id}`).remove();
+    dispatch(removeExpense({ id }));
+    return res;
   };
 };
