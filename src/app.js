@@ -6,7 +6,7 @@ import AppRouter from './routers/AppRouter';
 
 import configureStore from './store/configureStore';
 import { setTextFilter } from './actions/filters';
-import { addExpense } from './actions/expenses';
+import { setExpenses, startSetExpenses } from './actions/expenses';
 import getVisibleExpenses from './selectors/expenses';
 
 import 'normalize.css/normalize.css';
@@ -31,4 +31,11 @@ const jsx = (
   </Provider>
 );
 
-ReactDOM.render(jsx, document.getElementById('app'));
+ReactDOM.render(<p>Loading...</p>, document.getElementById('app'));
+
+const setExpensesDispatch = async () => {
+  const res = await store.dispatch(startSetExpenses());
+  ReactDOM.render(jsx, document.getElementById('app'));
+};
+
+setExpensesDispatch();
