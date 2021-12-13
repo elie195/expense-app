@@ -55,40 +55,43 @@ export class ExpenseForm extends Component {
   };
   render() {
     return (
-      <div>
-        {this.state.error && <p>{this.state.error}</p>}
-        <form onSubmit={this.onSubmit}>
-          <input
-            type="text"
-            placeholder="Description"
-            value={this.state.description}
-            onChange={this.onDescriptionChange}
-            autoFocus
-          />
-          <input
-            type="text"
-            placeholder="Amount"
-            value={this.state.amount}
-            onChange={this.onAmountChange}
-          />
-          <SingleDatePicker
-            date={this.state.createdAt}
-            onDateChange={this.onDateChange}
-            focused={this.state.calendarFocused}
-            onFocusChange={this.onFocusChange}
-            numberOfMonths={1}
-            isOutsideRange={() => false}
-          />
-          <textarea
-            placeholder="Add a note for your expense (optional)"
-            value={this.state.note}
-            onChange={this.onNoteChange}
-          ></textarea>
-          <button type="submit">
+      <form className="form" onSubmit={this.onSubmit}>
+        {this.state.error && <p className="form__error">{this.state.error}</p>}
+        <input
+          type="text"
+          placeholder="Description"
+          className="text-input"
+          value={this.state.description}
+          onChange={this.onDescriptionChange}
+          autoFocus
+        />
+        <input
+          type="text"
+          placeholder="Amount"
+          className="text-input"
+          value={this.state.amount}
+          onChange={this.onAmountChange}
+        />
+        <SingleDatePicker
+          date={this.state.createdAt}
+          onDateChange={this.onDateChange}
+          focused={this.state.calendarFocused}
+          onFocusChange={this.onFocusChange}
+          numberOfMonths={1}
+          isOutsideRange={() => false}
+        />
+        <textarea
+          placeholder="Add a note for your expense (optional)"
+          value={this.state.note}
+          className="textarea"
+          onChange={this.onNoteChange}
+        ></textarea>
+        <div>
+          <button className="btn-layout" type="submit">
             {this.props.submitText || 'Add Expense'}
           </button>
-        </form>
-      </div>
+        </div>
+      </form>
     );
   }
 }

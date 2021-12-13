@@ -8,6 +8,7 @@ import configureStore from './store/configureStore';
 import { login, logout } from './actions/auth';
 import { setExpenses, startSetExpenses } from './actions/expenses';
 import getVisibleExpenses from './selectors/expenses';
+import LoadingPage from './components/LoadingPage';
 
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
@@ -38,7 +39,7 @@ const renderApp = () => {
   }
 };
 
-ReactDOM.render(<p>Loading...</p>, document.getElementById('app'));
+ReactDOM.render(<LoadingPage />, document.getElementById('app'));
 
 const setExpensesDispatch = async () => {
   const res = await store.dispatch(startSetExpenses());
